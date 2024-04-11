@@ -2,9 +2,24 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
 
+## Instalar
+
+Descargar del git
+
+Por SSH
+git@github.com:dsansnuoc/controlHorario_front.git
+
+Por HTTPS
+https://github.com/dsansnuoc/controlHorario_front.git
+
+Ir a la carpeta y ejecutar `npm install`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+O run `ng serve -o` for a dev server and navigate direct to `http://localhost:4200/`
+
 
 ## Code scaffolding
 
