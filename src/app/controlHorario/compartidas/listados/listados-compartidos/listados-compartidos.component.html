@@ -1,0 +1,95 @@
+<h1>{{ titulo | translate }}</h1>
+<p-table
+  [value]="valores"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 20, 50, 100]"
+  [loading]="loading"
+  [paginator]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowHover]="true"
+  dataKey="name"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="min-width: 15rem" *ngFor="let item of campos">
+        <div class="flex justify-content-between align-items-center">
+          {{ item.nombreColumna | translate }}
+          <p-columnFilter
+            type="text"
+            field="{{ item.campo }}"
+            display="menu"
+            class="ml-auto"
+            *ngIf="item.filtro === true"
+          ></p-columnFilter>
+        </div>
+      </th>
+      <th style="min-width: 15rem">
+        <button
+          pButton
+          pRipple
+          icon="pi pi-plus-circle"
+          class="p-button-rounded mr-2"
+          (click)="crear()"
+          pTooltip="{{ 'general.nuevo' | translate }}"
+        ></button>
+        <label for="activos" *ngIf="activados">{{
+          "general.activos" | translate
+        }}</label>
+        <p-inputSwitch
+          *ngIf="activados"
+          [(ngModel)]="checked"
+          (onChange)="onSwitchChange()"
+        ></p-inputSwitch>
+        <label for="todos" *ngIf="activados">{{
+          "general.todos" | translate
+        }}</label>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-valor let-expanded="expanded">
+    <tr>
+      <td *ngFor="let item of campos">
+        <div>
+          {{ valor[item.campo] }}
+        </div>
+        <div *ngIf="item.date">
+          {{ valor[item.campo] | date : "dd/MM/yyyy" }}
+        </div>
+      </td>
+      <td>
+        <button
+          *ngIf="btnEditar"
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success mr-2"
+          [disabled]="valor.actived === false"
+          (click)="editar(valor)"
+          pTooltip="{{ 'general.editar' | translate }}"
+        ></button>
+
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-warning"
+          [disabled]="valor.actived === false"
+          (click)="borrar(valor)"
+          pTooltip="{{ 'general.borrar' | translate }}"
+        ></button>
+
+        <button
+          *ngIf="valor.actived === false"
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-help"
+          (click)="activar(valor)"
+          pTooltip="{{ 'general.activar' | translate }}"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

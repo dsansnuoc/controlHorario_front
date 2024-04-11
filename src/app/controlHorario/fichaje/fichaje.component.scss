@@ -1,0 +1,88 @@
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "first second third"
+    "fourth fifth sixth"
+    "seventh eighth ninth"
+    "tenth eleventh twelfth"; /* Definimos las áreas de la cuadrícula */
+  grid-template-columns: 33% 33% 33%; /* Ancho de las columnas */
+  grid-template-rows: repeat(4, 25%); /* Altura de las filas */
+  gap: 0px; /* Espacio entre las celdas */
+  height: 100%;
+}
+
+.grid-item:nth-child(1) {
+  grid-area: first;
+  text-align: right;
+  z-index: 2000;
+}
+
+.grid-item:nth-child(2) {
+  grid-area: second;
+  text-align: center;
+  z-index: 4000;
+}
+
+.grid-item:nth-child(3) {
+  grid-area: third;
+  text-align: left;
+  z-index: 2000;
+}
+
+.grid-item:nth-child(4) {
+  grid-area: fourth;
+  text-align: right;
+  z-index: 2000;
+}
+
+.grid-item:nth-child(5) {
+  grid-area: fifth;
+  text-align: center;
+  z-index: 2000;
+}
+
+.grid-item:nth-child(6) {
+  grid-area: sixth;
+  text-align: left;
+  z-index: 2000;
+}
+
+.grid-item:nth-child(7) {
+  grid-area: seventh;
+  text-align: right;
+  z-index: 2000;
+}
+
+.grid-item:nth-child(8) {
+  grid-area: eighth;
+  text-align: center;
+  z-index: 2000;
+}
+
+.grid-item:nth-child(9) {
+  grid-area: ninth;
+  text-align: left;
+  z-index: 2000;
+}
+
+.grid-item:nth-child(10) {
+  grid-area: tenth;
+  text-align: right;
+  z-index: 2000;
+}
+
+.grid-item:nth-child(11) {
+  grid-area: eleventh;
+  text-align: center;
+  z-index: 2000;
+}
+
+.grid-item:nth-child(12) {
+  grid-area: twelfth;
+  text-align: left;
+  z-index: 2000;
+}
+
+.vh-75 {
+  height: 75vh;
+}

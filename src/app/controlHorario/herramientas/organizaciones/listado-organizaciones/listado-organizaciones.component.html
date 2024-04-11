@@ -1,0 +1,8 @@
+<p>listado-organizaciones works!</p>
+<app-listados-compartidos
+  [titulo]="'herramientas.organizaciones'"
+  [valores]="organizaciones"
+  [loading]="false"
+  [campos]="campos"
+  (opcionesEvent)="recibeEvent($event)"
+></app-listados-compartidos>

@@ -1,0 +1,86 @@
+<p-toast [life]="10000"></p-toast>
+<div class="background row h-100 m-0 p-0">
+  <div class="justify-content-left align-items-left mt-0 p-ml-0">
+    <div class="grid-container">
+      <div class="grid-item">
+        <div class="d-flex justify-content-center my-2">
+          <img src="assets/img/logoFondoBlanco.webp" alt="" />
+        </div>
+      </div>
+      <div class="grid-item"></div>
+      <div class="grid-item">
+        <form
+          [formGroup]="inicioSesion"
+          (ngSubmit)="inicioSesion.valid && iniciarSesion()"
+        >
+          <div class="d-flex justify-content-center mt-mb-5">
+            <span class="p-float-label gap-2">
+              <input
+                type="text"
+                pInputText
+                formControlName="userId"
+                appEnterKey
+              />
+              <label for="float-input">{{ "general.user" | translate }}</label>
+            </span>
+
+            <div *ngIf="userId.invalid && (userId.dirty || userId.touched)">
+              <div
+                *ngFor="
+                  let error of inicioSesion.controls['userId'].errors | keyvalue
+                "
+              >
+                <p-message severity="error" text="{{ error.key }}"></p-message>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center mt-mb-5">
+            <span class="p-float-label">
+              <p-password
+                formControlName="password"
+                [feedback]="false"
+                name="password"
+                [toggleMask]="true"
+              ></p-password>
+              <label for="float-input">{{
+                "general.password" | translate
+              }}</label>
+            </span>
+
+            <div
+              *ngIf="password.invalid && (password.dirty || password.touched)"
+            >
+              <div
+                *ngFor="
+                  let error of inicioSesion.controls['password'].errors
+                    | keyvalue
+                "
+              >
+                <p-message severity="error" text="{{ error.key }}"></p-message>
+              </div>
+            </div>
+          </div>
+
+          <div class="row ms-2 p-0 my-3">
+            <div class="col text-end m-0 me-3 p-0">
+              <p-dialog header="Error">
+                <p>
+                  {{ "general.login" | translate }}
+                </p>
+              </p-dialog>
+
+              <button
+                pButton
+                type="submit"
+                label="{{ 'general.login' | translate }}"
+                [disabled]="!inicioSesion.valid"
+              ></button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="grid-item"></div>
+    </div>
+  </div>
+</div>

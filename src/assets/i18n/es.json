@@ -1,0 +1,30 @@
+{
+  "general": {
+    "user": "Usuario",
+    "password": "Contraseña",
+    "login": "Login",
+    "horaActual": "Hora Actual",
+    "horaEntrada": "Hora Entrada",
+    "horaSalida": "Hora Salida",
+    "tiempoTotal": "Tiempo Total",
+    "nif": "NIF",
+    "nombre": "Nombre",
+    "email": "e-mail",
+    "activos": "Activos",
+    "todos": "Todos",
+    "nuevo": "Nuevo"
+  },
+  "error": {
+    "password": "Contraseña incorrecta",
+    "login": "Error Login"
+  },
+  "fichaje": {
+    "entrada": "Entrada",
+    "salida": "Salidda",
+    "pausa": "Pausa / Parada",
+    "regreso": "Regreso Pasa / Parada"
+  },
+  "herramientas": {
+    "organizaciones": "Organizaciones / Clientes"
+  }
+}

@@ -1,0 +1,56 @@
+<p>fichaje works!</p>
+<div class="row vw-100 m-0 p-0">
+  <div class="justify-content-left align-items-left mt-0 p-ml-0 vw-100">
+    <div class="grid-container vw-100 vh-75">
+      <div class="grid-item"></div>
+      <div class="grid-item">
+        <p-button
+          label="{{ 'fichaje.entrada' | translate }}"
+          [disabled]="entrada"
+          (onClick)="clickEntrada()"
+        ></p-button>
+      </div>
+      <div class="grid-item">
+        <h3>{{ "general.horaActual" | translate }}</h3>
+        <h1>{{ horaActual }}</h1>
+        @if(entrada === true) {
+        <h3>{{ "general.horaEntrada" | translate }}</h3>
+        <h2>{{ horaEntrada }}</h2>
+        }
+      </div>
+      <div class="grid-item">4</div>
+      <div class="grid-item">
+        <p-button
+          label="{{ 'fichaje.pausa' | translate }}"
+          [disabled]="!entrada"
+        ></p-button>
+      </div>
+      <div class="grid-item">6</div>
+      <div class="grid-item">7</div>
+      <div class="grid-item">
+        <p-button
+          label="{{ 'fichaje.regreso' | translate }}"
+          [disabled]="!entrada"
+        ></p-button>
+      </div>
+      <div class="grid-item">9</div>
+      <div class="grid-item"></div>
+      <div class="grid-item">
+        <p-button
+          label="{{ 'fichaje.salida' | translate }}"
+          [disabled]="!entrada"
+          (onClick)="clickSalida()"
+        ></p-button>
+      </div>
+      <div class="grid-item">
+        @if(salida === true) {
+        <h3>{{ "general.horaSalida" | translate }}</h3>
+        <h2>{{ horaSalida }}</h2>
+
+        <h3>{{ "general.tiempoTotal" | translate }}</h3>
+        <h1>{{ totalTiempo }}</h1>
+        }
+      </div>
+    </div>
+  </div>
+</div>
