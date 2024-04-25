@@ -44,8 +44,6 @@
   background-image: url("../../assets/img/background.webp");
   background-size: cover;
 }
-
-/*
 ::ng-deep {
   .p-inputtext {
     width: 15rem;
@@ -53,14 +51,13 @@
     border: none;
   }
 }
-*/
-/*
+
 .p-float-label {
   background-color: #eaebed;
   border: #0b4f6c 0.5px solid;
   border-radius: 5px;
 }
-*/
+
 @media only screen and (max-width: 768px) {
   .grid-item:nth-child(1) {
     grid-area: first;
@@ -91,4 +88,17 @@
 .mt-mb-5 {
   margin-top: 5vh;
   margin-bottom: 5vh;
+}
+
+.p-button {
+  background-color: #252627;
+  border: #0b4f6c 1px solid;
+  color: #eaebed;
+  width: 9rem;
+  height: 3rem;
+}
+
+.p-button:hover {
+  color: #eaebed;
+  background-color: #009ade;
 }

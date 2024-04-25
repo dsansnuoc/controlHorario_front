@@ -13,3 +13,4 @@ export const metaReducers: MetaReducer<State>[] = isDevMode() ? [] : [];
 */
 
 export * from './login.reducer';
+export * from './organizaciones.reducer';

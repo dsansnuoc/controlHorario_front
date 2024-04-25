@@ -23,6 +23,9 @@ export class AutorizacionService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     this.token = this.localStorageService.get('access_token');
+
+    console.log(this.token);
+
     if (this.token) {
       req = req.clone({
         setHeaders: {

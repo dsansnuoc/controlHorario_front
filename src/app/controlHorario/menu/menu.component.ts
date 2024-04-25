@@ -77,14 +77,14 @@ export class MenuComponent implements OnInit {
         items: [
           {
             id: '51',
-            label: this.translate.instant('menu.organizaciones'),
+            label: this.translate.instant('herramientas.organizaciones'),
             icon: 'pi pi-fw pi-clock',
             routerLink: ['/herramientas/listadoorganizaciones'],
             visible: false,
           },
           {
             id: '52',
-            label: 'Usuarios',
+            label: this.translate.instant('herramientas.usuarios'),
             icon: 'pi pi-fw pi-clock',
             visible: false,
           },

@@ -2,6 +2,7 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import {
+  HTTP_INTERCEPTORS,
   HttpClient,
   HttpClientModule,
   provideHttpClient,
@@ -15,6 +16,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { EffectsArray } from './app.efects';
 import { appReducers } from './app.reducer';
 import { routes } from './app.routes';
+import { AutorizacionService } from './services/auxiliares/autorizacion.service';
 //import { LoginEffects } from './effects/login.effects';
 //import { loginReducer } from './reducers';
 //import { metaReducers, reducers } from './reducers';
@@ -48,5 +50,11 @@ export const appConfig: ApplicationConfig = {
 
     provideStoreDevtools(),
     provideEffects(EffectsArray),
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AutorizacionService,
+      multi: true,
+    },
   ],
 };

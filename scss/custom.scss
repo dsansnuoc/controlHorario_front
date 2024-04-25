@@ -11,3 +11,65 @@ body {
   width: 100%;
   height: 100%;
 }
+
+.texto-envuelto {
+  white-space: pre-wrap !important;
+}
+
+::ng-deep .label-bloque {
+  display: block;
+  margin-top: 5px; /* Ajusta el margen según sea necesario */
+}
+
+::ng-deep .p-button {
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+::ng-deep .p-button-rounded {
+  border-radius: 50%;
+}
+
+::ng-deep .form {
+  height: auto;
+  background-color: generalcolors.$primarywhite;
+
+  background: linear-gradient(#ffffff 0 0) padding-box,
+    linear-gradient(
+        to right,
+        generalcolors.$secondaryblue,
+        generalcolors.$primaryblue
+      )
+      border-box;
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+
+::ng-deep {
+  .link {
+    color: #0b4f6c;
+  }
+
+  a:hover {
+    color: #009ade;
+  }
+
+  a {
+    text-decoration: none !important;
+  }
+
+  .mat-typography h1 {
+    color: generalcolors.$black;
+    font-family: "michroma", sans-serif;
+    font-size: 36px;
+    margin: 0;
+  }
+
+  input[readonly] {
+    background-color: generalcolors.$disabled;
+    color: generalcolors.$black;
+    border-color: generalcolors.$error;
+  }
+}

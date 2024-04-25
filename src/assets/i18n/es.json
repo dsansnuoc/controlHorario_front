@@ -12,7 +12,10 @@
     "email": "e-mail",
     "activos": "Activos",
     "todos": "Todos",
-    "nuevo": "Nuevo"
+    "nuevo": "Nuevo",
+    "alta": "Alta",
+    "modificacion": "Modificación",
+    "cancelar": "Cancelar"
   },
   "error": {
     "password": "Contraseña incorrecta",
@@ -25,6 +28,10 @@
     "regreso": "Regreso Pasa / Parada"
   },
   "herramientas": {
-    "organizaciones": "Organizaciones / Clientes"
+    "organizaciones": "Organizaciones / Clientes",
+    "usuarios": "Usuarios"
+  },
+  "mensajeErrorCampo": {
+    "campoObligatorio": "El campo es obligatorio"
   }
 }

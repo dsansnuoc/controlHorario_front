@@ -13350,4 +13350,54 @@ html,
 body {
   width: 100%;
   height: 100%;
+}
+
+.texto-envuelto {
+  white-space: pre-wrap !important;
+}
+
+::ng-deep .label-bloque {
+  display: block;
+  margin-top: 5px; /* Ajusta el margen según sea necesario */
+}
+
+::ng-deep .p-button {
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+::ng-deep .p-button-rounded {
+  border-radius: 50%;
+}
+
+::ng-deep .form {
+  height: auto;
+  background-color: #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff)) padding-box, -webkit-gradient(linear, left top, right top, from(#0b4f6c), to(#009ade)) border-box;
+  background: linear-gradient(#ffffff 0 0) padding-box, linear-gradient(to right, #0b4f6c, #009ade) border-box;
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+
+::ng-deep .link {
+  color: #0b4f6c;
+}
+::ng-deep a:hover {
+  color: #009ade;
+}
+::ng-deep a {
+  text-decoration: none !important;
+}
+::ng-deep .mat-typography h1, ::ng-deep .mat-typography .h1 {
+  color: #000;
+  font-family: "michroma", sans-serif;
+  font-size: 36px;
+  margin: 0;
+}
+::ng-deep input[readonly] {
+  background-color: #e5e4e4;
+  color: #000;
+  border-color: #d40b0b;
 }/*# sourceMappingURL=custom.css.map */

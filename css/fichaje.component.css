@@ -5,6 +5,7 @@
   grid-template-columns: 33% 33% 33%; /* Ancho de las columnas */
   grid-template-rows: repeat(4, 25%); /* Altura de las filas */
   gap: 0px; /* Espacio entre las celdas */
+  height: 100%;
 }
 
 .grid-item:nth-child(1) {
@@ -77,4 +78,8 @@
   grid-area: twelfth;
   text-align: left;
   z-index: 2000;
+}
+
+.vh-75 {
+  height: 75vh;
 }/*# sourceMappingURL=fichaje.component.css.map */
