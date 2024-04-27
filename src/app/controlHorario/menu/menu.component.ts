@@ -117,14 +117,21 @@ export class MenuComponent implements OnInit {
     if (sessionStorage.getItem('user') !== null) {
       let user = JSON.parse(sessionStorage.getItem('user') ?? '');
       let rol = user.roles[0].id;
+      let org = user.organizaciones;
       this.items?.forEach((itemMenu) => {
         switch (rol) {
           case 1:
             if (itemMenu.id === '5') {
               itemMenu.visible = true;
               itemMenu.items?.forEach((itemSubMenu) => {
-                if (itemSubMenu.id === '51' || itemSubMenu.id === '52') {
-                  itemSubMenu.visible = true;
+                if (org.length === 0) {
+                  if (itemSubMenu.id === '51' || itemSubMenu.id === '52') {
+                    itemSubMenu.visible = true;
+                  }
+                } else {
+                  if (itemSubMenu.id !== '51') {
+                    itemSubMenu.visible = true;
+                  }
                 }
               });
             }

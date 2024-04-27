@@ -53,3 +53,13 @@ export const updateStatusUsuarioSuccess = createAction(
   '[USUARIOS] Update Status Success',
   props<{ resultado: any }>()
 );
+
+export const allUsuariosOrganizacion = createAction(
+  '[USUARIOS] All Organización',
+  props<{ usuario: any }>()
+);
+
+export const allUsuariosOrganizacionSuccess = createAction(
+  '[USUARIOS] All Organización Success',
+  props<{ usuarios: any }>()
+);

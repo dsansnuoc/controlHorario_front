@@ -56,6 +56,10 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
   formulario: UntypedFormGroup;
 
+  org: any;
+
+  organizacionesAux: number = 0;
+
   constructor(
     private translate: TranslateService,
     public dialogRef: MatDialogRef<UsuariosComponent>,
@@ -94,6 +98,24 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     this.loadRoles();
     setTimeout(() => {
       this.loadOrganizaciones();
+
+      let user = JSON.parse(sessionStorage.getItem('user') ?? '');
+      this.org = user.organizaciones;
+      this.organizacionesAux = this.org.lenght;
+      if (this.org.lenght !== 0) {
+        setTimeout(() => {
+          this.organizacion_id.setValue(
+            this.organizaciones.find((org) => org.id == this.org[0].id)
+          );
+        }, 200);
+
+        /*
+      this.loadUsuarios();
+    } else {
+      this.loadUsuariosOrganizacion(this.org[0].id);
+      */
+      }
+
       if (this.id != 0) {
         setTimeout(() => {
           this.loadUsuario(this.id);
@@ -247,7 +269,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
               (org) => org.id == resultado.usuario?.organizaciones[0].id
             )
           );
-          console.log(resultado.usuario?.activate);
+          // console.log(resultado.usuario?.activate);
           this.activate.setValue(
             resultado.usuario?.activate == true ? true : false
           );

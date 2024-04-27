@@ -5,7 +5,11 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { allUsuarios, updateStatusUsuario } from '../../../../actions';
+import {
+  allUsuarios,
+  allUsuariosOrganizacion,
+  updateStatusUsuario,
+} from '../../../../actions';
 import { AppState } from '../../../../app.reducer';
 import { MaterialModules } from '../../../../modules/material.modules';
 import { OtherModule } from '../../../../modules/other.modules';
@@ -35,6 +39,7 @@ export class ListadoUsuariosComponent implements OnInit, OnDestroy {
   activos: boolean = false;
 
   suscripcion: Subscription = new Subscription();
+  org: any;
 
   constructor(
     private translate: TranslateService,
@@ -78,7 +83,13 @@ export class ListadoUsuariosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadUsuarios();
+    let user = JSON.parse(sessionStorage.getItem('user') ?? '');
+    this.org = user.organizaciones;
+    if (this.org.length === 0) {
+      this.loadUsuarios();
+    } else {
+      this.loadUsuariosOrganizacion(this.org[0].id);
+    }
   }
 
   recibeEvent($event: any) {
@@ -109,7 +120,11 @@ export class ListadoUsuariosComponent implements OnInit, OnDestroy {
 
         dialogRefE.afterClosed().subscribe((result: any) => {
           if (result) {
-            this.loadUsuarios();
+            if (this.org.length === 0) {
+              this.loadUsuarios();
+            } else {
+              this.loadUsuariosOrganizacion(this.org[0].id);
+            }
           }
         });
 
@@ -117,17 +132,19 @@ export class ListadoUsuariosComponent implements OnInit, OnDestroy {
 
       case 'S':
         this.activos = $event.valor;
-        this.loadUsuarios();
+        if (this.org.length === 0) {
+          this.loadUsuarios();
+        } else {
+          this.loadUsuariosOrganizacion(this.org[0].id);
+        }
         break;
 
       case 'B':
         this.cambiarEstadoUsuario($event.valor.id, false);
-
         break;
 
       case 'A':
         this.cambiarEstadoUsuario($event.valor.id, true);
-
         break;
     }
   }
@@ -143,6 +160,28 @@ export class ListadoUsuariosComponent implements OnInit, OnDestroy {
       .select('usuariosApp')
       .subscribe((resultado) => {
         if (resultado.error == undefined && resultado.loading === false) {
+          this.usuarios = [...resultado.usuarios];
+          if (this.activos === false) {
+            this.usuarios = this.usuarios.filter((usr) => usr.activate == true);
+          }
+        }
+      });
+  }
+
+  loadUsuariosOrganizacion(id: number) {
+    if (this.suscripcion) {
+      this.suscripcion.unsubscribe();
+    }
+    let valores = {
+      id: id,
+    };
+
+    this.store.dispatch(allUsuariosOrganizacion({ usuario: valores }));
+
+    this.suscripcion = this.store
+      .select('usuariosApp')
+      .subscribe((resultado) => {
+        if (resultado.error == undefined && resultado.loading == false) {
           this.usuarios = [...resultado.usuarios];
           if (this.activos === false) {
             this.usuarios = this.usuarios.filter((usr) => usr.activate == true);
@@ -167,7 +206,11 @@ export class ListadoUsuariosComponent implements OnInit, OnDestroy {
       .select('usuariosApp')
       .subscribe((resultado) => {
         if (resultado.error == undefined && resultado.loading == false) {
-          this.loadUsuarios();
+          if (this.org.length === 0) {
+            this.loadUsuarios();
+          } else {
+            this.loadUsuariosOrganizacion(this.org[0].id);
+          }
         }
       });
   }

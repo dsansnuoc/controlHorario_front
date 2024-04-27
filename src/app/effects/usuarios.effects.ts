@@ -5,6 +5,8 @@ import {
   addUsuario,
   addUsuarioSuccess,
   allUsuarios,
+  allUsuariosOrganizacion,
+  allUsuariosOrganizacionSuccess,
   allUsuariosSuccess,
   errorUsuarios,
   loadUsuario,
@@ -78,6 +80,20 @@ export class UsuariosEffects {
         this.usuariosServices.changeStatusUsuario(datos.usuario).pipe(
           map((resultado) =>
             updateStatusOrganizacionSuccess({ resultado: resultado })
+          ),
+          catchError((err) => of(errorUsuarios({ payload: err })))
+        )
+      )
+    )
+  );
+
+  getAllUsuariosOrganizacion$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(allUsuariosOrganizacion),
+      mergeMap((datos) =>
+        this.usuariosServices.obtenerUsuariosOrganizacion(datos.usuario).pipe(
+          map((resultado) =>
+            allUsuariosOrganizacionSuccess({ usuarios: resultado })
           ),
           catchError((err) => of(errorUsuarios({ payload: err })))
         )

@@ -3,6 +3,8 @@ import {
   addUsuario,
   addUsuarioSuccess,
   allUsuarios,
+  allUsuariosOrganizacion,
+  allUsuariosOrganizacionSuccess,
   allUsuariosSuccess,
   errorUsuarios,
   loadUsuario,
@@ -157,6 +159,32 @@ export const usuariosReducer = createReducer(
       loading: false,
       loaded: true,
 
+      error: idError == '200' ? undefined : error,
+    };
+  }),
+
+  on(allUsuariosOrganizacion, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+    usuarios: [],
+    error: undefined,
+  })),
+
+  on(allUsuariosOrganizacionSuccess, (state, { usuarios }) => {
+    const idError = usuarios.id_error;
+
+    let error = {
+      id_error: usuarios.id_error,
+      descripcion: usuarios.message,
+      etiqueta: usuarios.etiqueta,
+    };
+
+    return {
+      ...state,
+      loading: false,
+      loaded: true,
+      usuarios: idError == '200' ? usuarios.message : null,
       error: idError == '200' ? undefined : error,
     };
   })

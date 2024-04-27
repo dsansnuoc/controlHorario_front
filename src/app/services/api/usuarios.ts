@@ -42,7 +42,14 @@ export class UsuariosService {
 
   changeStatusUsuario(usuario: any): Observable<any> {
     return this.http.post<any>(
-      this.apiMaster + '/api/usuarioCambiarEstado/',
+      this.apiMaster + '/api/usuarioCambiarEstado',
+      usuario
+    );
+  }
+
+  obtenerUsuariosOrganizacion(usuario: any): Observable<any> {
+    return this.http.post<any>(
+      this.apiMaster + '/api/usuariosOrganizaciones',
       usuario
     );
   }
