@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
@@ -12,7 +12,7 @@ import { ServiciosLecturaConfiguracionService } from './services/json/ServiciosL
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss', '../../scss/custom.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'controlHorario';
 
   constructor(
@@ -21,6 +21,7 @@ export class AppComponent {
     private primengConfig: PrimeNGConfig,
     private servicioLecturaConfig: ServiciosLecturaConfiguracionService
   ) {
+    /*
     translate.addLangs(['es']);
     translate.setDefaultLang('es');
     translate.use('es');
@@ -40,14 +41,43 @@ export class AppComponent {
 
     if (!apiMaster) {
       setTimeout(() => {
-        console.log(this.servicioLecturaConfig.camposConfig);
         this.cookieService.set(
           'apiMaster',
           this.servicioLecturaConfig.camposConfig.apiMaster,
           fechaExpiracion,
           '/'
         );
-      }, 500);
+      }, 300);
+    }
+    */
+  }
+  ngOnInit(): void {
+    this.translate.addLangs(['es']);
+    this.translate.setDefaultLang('es');
+    this.translate.use('es');
+
+    this.translate
+      .get('primeng')
+      .subscribe((res) => this.primengConfig.setTranslation(res));
+
+    const fechaExpiracion = new Date();
+    fechaExpiracion.setTime(fechaExpiracion.getTime() + 10 * 60 * 60 * 1000);
+
+    let apiMaster = this.cookieService.check('apiMaster');
+    if (apiMaster) {
+      this.cookieService.delete('apiMaster', '/');
+      apiMaster = !apiMaster;
+    }
+
+    if (!apiMaster) {
+      setTimeout(() => {
+        this.cookieService.set(
+          'apiMaster',
+          this.servicioLecturaConfig.camposConfig.apiMaster,
+          fechaExpiracion,
+          '/'
+        );
+      }, 300);
     }
   }
 }

@@ -42,3 +42,13 @@ export const updateOrganizacionSuccess = createAction(
   '[ORGANIZACIONES] Update Success',
   props<{ resultado: any }>()
 );
+
+export const updateStatusOrganizacion = createAction(
+  '[ORGANIZACIONES] Update Status',
+  props<{ organizacion: any }>()
+);
+
+export const updateStatusOrganizacionSuccess = createAction(
+  '[ORGANIZACIONES] Update Status Success',
+  props<{ resultado: any }>()
+);

@@ -1,53 +1,41 @@
 import { createReducer, on } from '@ngrx/store';
-import {
-  addOrganizacion,
-  addOrganizacionSuccess,
-  allOrganizaciones,
-  allOrganizacionesSuccess,
-  errorOrganizaciones,
-  loadOrganizacion,
-  loadOrganizacionSuccess,
-  updateOrganizacion,
-  updateOrganizacionSuccess,
-  updateStatusOrganizacion,
-  updateStatusOrganizacionSuccess,
-} from '../actions';
-import { OrganizacionesDTO } from '../modulesDTO/organizaciones.dto';
+import { allRoles, allRolesSuccess, errorRoles } from '../actions';
+import { RolesDTO } from '../modulesDTO/roles.dto';
 
-export interface OrganizacioneState {
-  organizacion: OrganizacionesDTO | null;
-  organizaciones: OrganizacionesDTO[];
+export interface RolesState {
+  rol: RolesDTO | null;
+  roles: RolesDTO[];
   loading: boolean;
   loaded: boolean;
   error?: any;
 }
 
-export const initialOrganizacionesState: OrganizacioneState = {
-  organizacion: null,
-  organizaciones: [],
+export const initialRolesState: RolesState = {
+  rol: null,
+  roles: [],
   loading: false,
   loaded: false,
   error: undefined,
 };
 
-export const organizacionesReducer = createReducer(
-  initialOrganizacionesState,
-  on(allOrganizaciones, (state) => ({
+export const rolesReducer = createReducer(
+  initialRolesState,
+  on(allRoles, (state) => ({
     ...state,
     loading: true,
     loaded: false,
-    organizaciones: [],
+    roles: [],
     error: undefined,
   })),
 
-  on(allOrganizacionesSuccess, (state, { organizaciones }) => ({
+  on(allRolesSuccess, (state, { roles }) => ({
     ...state,
     loaded: true,
     loading: false,
-    organizaciones: [...organizaciones],
+    roles: [...roles],
     error: undefined,
   })),
-  on(errorOrganizaciones, (state, { payload }) => ({
+  on(errorRoles, (state, { payload }) => ({
     ...state,
     loading: false,
     loaded: false,
@@ -59,8 +47,8 @@ export const organizacionesReducer = createReducer(
       timestamp: payload.timestamp,
       path: payload.path,
     },
-  })),
-
+  }))
+  /*
   on(addOrganizacion, (state) => ({
     ...state,
     loading: true,
@@ -136,30 +124,6 @@ export const organizacionesReducer = createReducer(
 
       error: idError == '200' ? undefined : error,
     };
-  }),
-
-  on(updateStatusOrganizacion, (state) => ({
-    ...state,
-    loading: true,
-    loaded: false,
-    error: undefined,
-  })),
-
-  on(updateStatusOrganizacionSuccess, (state, { resultado }) => {
-    const idError = resultado.id_error;
-
-    let error = {
-      id_error: resultado.id_error,
-      descripcion: resultado.message,
-      etiqueta: resultado.etiqueta,
-    };
-
-    return {
-      ...state,
-      loading: false,
-      loaded: true,
-
-      error: idError == '200' ? undefined : error,
-    };
   })
+  */
 );

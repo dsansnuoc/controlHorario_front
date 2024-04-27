@@ -86,6 +86,7 @@ export class MenuComponent implements OnInit {
             id: '52',
             label: this.translate.instant('herramientas.usuarios'),
             icon: 'pi pi-fw pi-clock',
+            routerLink: ['/herramientas/listadousuarios'],
             visible: false,
           },
           {

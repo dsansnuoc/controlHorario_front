@@ -1,38 +1,38 @@
 import { createReducer, on } from '@ngrx/store';
 import {
-  addOrganizacion,
-  addOrganizacionSuccess,
-  allOrganizaciones,
-  allOrganizacionesSuccess,
-  errorOrganizaciones,
-  loadOrganizacion,
-  loadOrganizacionSuccess,
-  updateOrganizacion,
-  updateOrganizacionSuccess,
-  updateStatusOrganizacion,
-  updateStatusOrganizacionSuccess,
+  addUsuario,
+  addUsuarioSuccess,
+  allUsuarios,
+  allUsuariosSuccess,
+  errorUsuarios,
+  loadUsuario,
+  loadUsuarioSuccess,
+  updateStatusUsuario,
+  updateStatusUsuarioSuccess,
+  updateUsuario,
+  updateUsuarioSuccess,
 } from '../actions';
-import { OrganizacionesDTO } from '../modulesDTO/organizaciones.dto';
+import { UsuariosDTO } from '../modulesDTO/usuaios.dto';
 
-export interface OrganizacioneState {
-  organizacion: OrganizacionesDTO | null;
-  organizaciones: OrganizacionesDTO[];
+export interface UsuariosState {
+  usuario: UsuariosDTO | null;
+  usuarios: UsuariosDTO[];
   loading: boolean;
   loaded: boolean;
   error?: any;
 }
 
-export const initialOrganizacionesState: OrganizacioneState = {
-  organizacion: null,
-  organizaciones: [],
+export const initialUsuariosState: UsuariosState = {
+  usuario: null,
+  usuarios: [],
   loading: false,
   loaded: false,
   error: undefined,
 };
 
-export const organizacionesReducer = createReducer(
-  initialOrganizacionesState,
-  on(allOrganizaciones, (state) => ({
+export const usuariosReducer = createReducer(
+  initialUsuariosState,
+  on(allUsuarios, (state) => ({
     ...state,
     loading: true,
     loaded: false,
@@ -40,14 +40,14 @@ export const organizacionesReducer = createReducer(
     error: undefined,
   })),
 
-  on(allOrganizacionesSuccess, (state, { organizaciones }) => ({
+  on(allUsuariosSuccess, (state, { usuarios }) => ({
     ...state,
     loaded: true,
     loading: false,
-    organizaciones: [...organizaciones],
+    usuarios: [...usuarios],
     error: undefined,
   })),
-  on(errorOrganizaciones, (state, { payload }) => ({
+  on(errorUsuarios, (state, { payload }) => ({
     ...state,
     loading: false,
     loaded: false,
@@ -61,15 +61,15 @@ export const organizacionesReducer = createReducer(
     },
   })),
 
-  on(addOrganizacion, (state) => ({
+  on(addUsuario, (state) => ({
     ...state,
     loading: true,
     loaded: false,
-    organizaciones: [],
+    usuarios: [],
     error: undefined,
   })),
 
-  on(addOrganizacionSuccess, (state, { resultado }) => {
+  on(addUsuarioSuccess, (state, { resultado }) => {
     const idError = resultado.id_error;
 
     let error = {
@@ -82,20 +82,19 @@ export const organizacionesReducer = createReducer(
       ...state,
       loading: false,
       loaded: true,
-
       error: idError == '200' ? undefined : error,
     };
   }),
 
-  on(loadOrganizacion, (state) => ({
+  on(loadUsuario, (state) => ({
     ...state,
     loading: true,
     loaded: false,
-    organizacion: null,
+    usuario: null,
     error: undefined,
   })),
 
-  on(loadOrganizacionSuccess, (state, { resultado }) => {
+  on(loadUsuarioSuccess, (state, { resultado }) => {
     const idError = resultado.id_error;
 
     let error = {
@@ -108,19 +107,19 @@ export const organizacionesReducer = createReducer(
       ...state,
       loading: false,
       loaded: true,
-      organizacion: idError == '200' ? resultado.message : null,
+      usuario: idError == '200' ? resultado.message : null,
       error: idError == '200' ? undefined : error,
     };
   }),
 
-  on(updateOrganizacion, (state) => ({
+  on(updateUsuario, (state) => ({
     ...state,
     loading: true,
     loaded: false,
     error: undefined,
   })),
 
-  on(updateOrganizacionSuccess, (state, { resultado }) => {
+  on(updateUsuarioSuccess, (state, { resultado }) => {
     const idError = resultado.id_error;
 
     let error = {
@@ -133,19 +132,18 @@ export const organizacionesReducer = createReducer(
       ...state,
       loading: false,
       loaded: true,
-
       error: idError == '200' ? undefined : error,
     };
   }),
 
-  on(updateStatusOrganizacion, (state) => ({
+  on(updateStatusUsuario, (state) => ({
     ...state,
     loading: true,
     loaded: false,
     error: undefined,
   })),
 
-  on(updateStatusOrganizacionSuccess, (state, { resultado }) => {
+  on(updateStatusUsuarioSuccess, (state, { resultado }) => {
     const idError = resultado.id_error;
 
     let error = {

@@ -13399,5 +13399,6 @@ body {
 }
 ::ng-deep input[readonly] {
   background-color: #e5e4e4;
-  color: #ffffff;
+  color: #000;
+  border-color: #d40b0b;
 }/*# sourceMappingURL=styles.css.map */

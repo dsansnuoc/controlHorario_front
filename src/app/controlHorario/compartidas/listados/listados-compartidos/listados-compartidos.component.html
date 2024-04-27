@@ -51,11 +51,17 @@
   <ng-template pTemplate="body" let-valor let-expanded="expanded">
     <tr>
       <td *ngFor="let item of campos">
-        <div>
+        <div *ngIf="item.type === 'value'">
           {{ valor[item.campo] }}
         </div>
         <div *ngIf="item.date">
           {{ valor[item.campo] | date : "dd/MM/yyyy" }}
+        </div>
+
+        <div *ngIf="item.type === 'object'">
+          <div *ngFor="let auxValue of valor[item.campo]">
+            {{ auxValue[item.campoObject] }}
+          </div>
         </div>
       </td>
       <td>
@@ -65,7 +71,7 @@
           pRipple
           icon="pi pi-pencil"
           class="p-button-rounded p-button-success mr-2"
-          [disabled]="valor.actived === false"
+          [disabled]="valor.activate == false || valor.activate == 0"
           (click)="editar(valor)"
           pTooltip="{{ 'general.editar' | translate }}"
         ></button>
@@ -75,13 +81,13 @@
           pRipple
           icon="pi pi-trash"
           class="p-button-rounded p-button-warning"
-          [disabled]="valor.actived === false"
+          [disabled]="valor.activate == false || valor.activate == 0"
           (click)="borrar(valor)"
           pTooltip="{{ 'general.borrar' | translate }}"
         ></button>
 
         <button
-          *ngIf="valor.actived === false"
+          *ngIf="valor.activate == false || valor.activate == 0"
           pButton
           pRipple
           icon="pi pi-trash"

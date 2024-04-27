@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { FichajeComponent } from './controlHorario/fichaje/fichaje.component';
 import { ListadoOrganizacionesComponent } from './controlHorario/herramientas/organizaciones/listado-organizaciones/listado-organizaciones.component';
 import { OrganizacionesComponent } from './controlHorario/herramientas/organizaciones/organizaciones/organizaciones.component';
+import { ListadoUsuariosComponent } from './controlHorario/herramientas/usuarios/listado-usuarios/listado-usuarios.component';
 import { MenuComponent } from './controlHorario/menu/menu.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { LoginGuardianService } from './services/auxiliares/login-guardian.service';
@@ -31,6 +32,10 @@ export const routes: Routes = [
       {
         path: 'organizaciones/:id',
         component: OrganizacionesComponent,
+      },
+      {
+        path: 'listadousuarios',
+        component: ListadoUsuariosComponent,
       },
     ],
   },

@@ -48,20 +48,6 @@ export class OrganizacionesComponent implements OnInit {
 
   formulario: UntypedFormGroup;
 
-  /*
-  formulario = {
-    name: '',
-    nif: '',
-    email: '',
-    conection: '',
-    smtpPort: '',
-    smtpUser: '',
-    smtpPassword: '',
-    smtpServer: '',
-    active: true,
-  };
-*/
-
   suscripcion: Subscription = new Subscription();
 
   constructor(
@@ -122,7 +108,6 @@ export class OrganizacionesComponent implements OnInit {
         addOrganizacion({ organizacion: this.formulario.value })
       );
     } else {
-      console.log(this.id);
       this.store.dispatch(
         updateOrganizacion({ organizacion: this.formulario.value, id: this.id })
       );
@@ -169,7 +154,6 @@ export class OrganizacionesComponent implements OnInit {
       .select('organizacionesApp')
       .subscribe((resultado) => {
         if (resultado.error == undefined && resultado.loading == false) {
-          console.log(resultado.organizacion);
           this.name.setValue(resultado.organizacion?.name);
           this.nif.setValue(resultado.organizacion?.nif);
           this.email.setValue(resultado.organizacion?.email);

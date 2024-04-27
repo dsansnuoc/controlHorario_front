@@ -1,40 +1,35 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { allUsuarios, updateStatusUsuario } from '../../../../actions';
+import { AppState } from '../../../../app.reducer';
 import { MaterialModules } from '../../../../modules/material.modules';
 import { OtherModule } from '../../../../modules/other.modules';
 import { PrimeNgModules } from '../../../../modules/primeng.modules';
-import { OrganizacionesDTO } from '../../../../modulesDTO/organizaciones.dto';
-
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-//import { DialogService } from 'primeng/dynamicdialog';
-import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
-import {
-  allOrganizaciones,
-  updateStatusOrganizacion,
-} from '../../../../actions';
-import { AppState } from '../../../../app.reducer';
+import { UsuariosDTO } from '../../../../modulesDTO/usuaios.dto';
 import { ListadosCompartidosComponent } from '../../../compartidas/listados/listados-compartidos/listados-compartidos.component';
-import { OrganizacionesComponent } from '../organizaciones/organizaciones.component';
+import { UsuariosComponent } from '../usuarios/usuarios.component';
 
 @Component({
-  selector: 'app-listado-organizaciones',
+  selector: 'app-listado-usuarios',
   standalone: true,
+  templateUrl: './listado-usuarios.component.html',
+  styleUrl: './listado-usuarios.component.scss',
   imports: [
     CommonModule,
     OtherModule,
     MaterialModules,
     PrimeNgModules,
+    UsuariosComponent,
     ListadosCompartidosComponent,
-    OrganizacionesComponent,
   ],
-  templateUrl: './listado-organizaciones.component.html',
-  styleUrl: './listado-organizaciones.component.scss',
 })
-export class ListadoOrganizacionesComponent implements OnInit {
-  organizaciones: OrganizacionesDTO[] = [];
+export class ListadoUsuariosComponent implements OnInit, OnDestroy {
+  usuarios: UsuariosDTO[] = [];
   campos: any[] = [];
 
   activos: boolean = false;
@@ -49,12 +44,6 @@ export class ListadoOrganizacionesComponent implements OnInit {
   ) {
     this.campos.push(
       {
-        campo: 'nif',
-        filtro: true,
-        nombreColumna: 'general.nif',
-        type: 'value',
-      },
-      {
         campo: 'name',
         filtro: true,
         nombreColumna: 'general.nombre',
@@ -65,17 +54,37 @@ export class ListadoOrganizacionesComponent implements OnInit {
         filtro: true,
         nombreColumna: 'general.email',
         type: 'value',
+      },
+      {
+        campo: 'roles',
+        filtro: false,
+        nombreColumna: 'general.rol',
+        type: 'object',
+        campoObject: 'name',
+      },
+      {
+        campo: 'organizaciones',
+        filtro: false,
+        nombreColumna: 'general.organizaciones',
+        type: 'object',
+        campoObject: 'name',
       }
     );
   }
+  ngOnDestroy(): void {
+    if (this.suscripcion) {
+      this.suscripcion.unsubscribe();
+    }
+  }
+
   ngOnInit(): void {
-    this.loadOrganizaciones();
+    this.loadUsuarios();
   }
 
   recibeEvent($event: any) {
     switch ($event.tipo) {
       case 'C':
-        const dialogRef = this.dialog.open(OrganizacionesComponent, {
+        const dialogRef = this.dialog.open(UsuariosComponent, {
           data: { data: { id: 0 } },
           height: '65vh',
           width: '95vh',
@@ -84,14 +93,14 @@ export class ListadoOrganizacionesComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe((result: any) => {
           if (result) {
-            this.loadOrganizaciones();
+            this.loadUsuarios();
           }
         });
 
         break;
 
       case 'E':
-        const dialogRefE = this.dialog.open(OrganizacionesComponent, {
+        const dialogRefE = this.dialog.open(UsuariosComponent, {
           data: { data: { id: $event.valor.id } },
           height: '65vh',
           width: '95vh',
@@ -100,7 +109,7 @@ export class ListadoOrganizacionesComponent implements OnInit {
 
         dialogRefE.afterClosed().subscribe((result: any) => {
           if (result) {
-            this.loadOrganizaciones();
+            this.loadUsuarios();
           }
         });
 
@@ -108,43 +117,41 @@ export class ListadoOrganizacionesComponent implements OnInit {
 
       case 'S':
         this.activos = $event.valor;
-        this.loadOrganizaciones();
+        this.loadUsuarios();
         break;
 
       case 'B':
-        this.cambiarEstadoOrganizacion($event.valor.id, false);
+        this.cambiarEstadoUsuario($event.valor.id, false);
 
         break;
 
       case 'A':
-        this.cambiarEstadoOrganizacion($event.valor.id, true);
+        this.cambiarEstadoUsuario($event.valor.id, true);
 
         break;
     }
   }
 
-  loadOrganizaciones() {
+  loadUsuarios() {
     if (this.suscripcion) {
       this.suscripcion.unsubscribe();
     }
 
-    this.store.dispatch(allOrganizaciones());
+    this.store.dispatch(allUsuarios());
 
     this.suscripcion = this.store
-      .select('organizacionesApp')
+      .select('usuariosApp')
       .subscribe((resultado) => {
-        if (resultado.error == undefined && resultado.loading == false) {
-          this.organizaciones = [...resultado.organizaciones];
+        if (resultado.error == undefined && resultado.loading === false) {
+          this.usuarios = [...resultado.usuarios];
           if (this.activos === false) {
-            this.organizaciones = this.organizaciones.filter(
-              (org) => org.activate == true
-            );
+            this.usuarios = this.usuarios.filter((usr) => usr.activate == true);
           }
         }
       });
   }
 
-  cambiarEstadoOrganizacion(id: number, estado: boolean) {
+  cambiarEstadoUsuario(id: number, estado: boolean) {
     if (this.suscripcion) {
       this.suscripcion.unsubscribe();
     }
@@ -154,13 +161,13 @@ export class ListadoOrganizacionesComponent implements OnInit {
       activate: estado,
     };
 
-    this.store.dispatch(updateStatusOrganizacion({ organizacion: valores }));
+    this.store.dispatch(updateStatusUsuario({ usuario: valores }));
 
     this.suscripcion = this.store
-      .select('organizacionesApp')
+      .select('usuariosApp')
       .subscribe((resultado) => {
         if (resultado.error == undefined && resultado.loading == false) {
-          this.loadOrganizaciones();
+          this.loadUsuarios();
         }
       });
   }

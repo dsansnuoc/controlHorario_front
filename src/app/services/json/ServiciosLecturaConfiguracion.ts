@@ -10,7 +10,6 @@ export class ServiciosLecturaConfiguracionService {
   constructor(private http: HttpClient, private cookieService: CookieService) {
     this.http.get('../../../assets/json/config.json').subscribe((respuesta) => {
       this.camposConfig = respuesta;
-      console.log(respuesta);
     });
   }
 }

@@ -16,6 +16,9 @@ export class OrganizacionesService {
   }
 
   obtenerOrganizaciones(): Observable<OrganizacionesDTO[]> {
+    if (this.apiMaster == '') {
+      this.apiMaster = this.cookieService.get('apiMaster');
+    }
     return this.http.get<OrganizacionesDTO[]>(
       this.apiMaster + '/api/organizaciones'
     );
@@ -38,9 +41,15 @@ export class OrganizacionesService {
     organizacion: OrganizacionesDTO,
     id: number
   ): Observable<any> {
-    console.log(id);
     return this.http.put<any>(
       this.apiMaster + '/api/organizacionActualizar/' + id,
+      organizacion
+    );
+  }
+
+  changeStatusOrganizacion(organizacion: any): Observable<any> {
+    return this.http.post<any>(
+      this.apiMaster + '/api/organizacionCambiarEstado/',
       organizacion
     );
   }

@@ -16,7 +16,6 @@ export class ServiciosLoginService {
   }
 
   realizarLogin(datos: AuthDTO): Observable<any> {
-    console.log(this.apiMaster);
     if (this.apiMaster == '') {
       this.apiMaster = this.cookieService.get('apiMaster');
     }

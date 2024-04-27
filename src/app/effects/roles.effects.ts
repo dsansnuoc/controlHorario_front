@@ -1,42 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of } from 'rxjs';
-import {
-  addOrganizacion,
-  addOrganizacionSuccess,
-  allOrganizaciones,
-  allOrganizacionesSuccess,
-  errorOrganizaciones,
-  loadOrganizacion,
-  loadOrganizacionSuccess,
-  updateOrganizacion,
-  updateOrganizacionSuccess,
-  updateStatusOrganizacion,
-  updateStatusOrganizacionSuccess,
-} from '../actions';
-import { OrganizacionesService } from '../services/api/organizaciones';
+import { allRoles, allRolesSuccess, errorRoles } from '../actions';
+import { RolesService } from '../services/api/roles';
 
 @Injectable()
-export class OrganizacionesEffects {
-  constructor(
-    private actions$: Actions,
-    private organizacionesServices: OrganizacionesService
-  ) {}
+export class RolesEffects {
+  constructor(private actions$: Actions, private rolesServices: RolesService) {}
 
-  getAllOrganizaciones$ = createEffect(() =>
+  getAllRoles$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(allOrganizaciones),
+      ofType(allRoles),
       mergeMap(() =>
-        this.organizacionesServices.obtenerOrganizaciones().pipe(
-          map((resultado) =>
-            allOrganizacionesSuccess({ organizaciones: resultado })
-          ),
-          catchError((err) => of(errorOrganizaciones({ payload: err })))
+        this.rolesServices.obtenerRoles().pipe(
+          map((resultado) => allRolesSuccess({ roles: resultado })),
+          catchError((err) => of(errorRoles({ payload: err })))
         )
       )
     )
   );
-
+  /*
   getAddOrganizacion$ = createEffect(() =>
     this.actions$.pipe(
       ofType(addOrganizacion),
@@ -76,20 +59,5 @@ export class OrganizacionesEffects {
       )
     )
   );
-
-  updateAddStatusOrganizacion$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(updateStatusOrganizacion),
-      mergeMap((datos) =>
-        this.organizacionesServices
-          .changeStatusOrganizacion(datos.organizacion)
-          .pipe(
-            map((resultado) =>
-              updateStatusOrganizacionSuccess({ resultado: resultado })
-            ),
-            catchError((err) => of(errorOrganizaciones({ payload: err })))
-          )
-      )
-    )
-  );
+  */
 }
