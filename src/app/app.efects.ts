@@ -1,6 +1,7 @@
 import { LoginEffects } from './effects/login.effects';
 import { OrganizacionesEffects } from './effects/organizaciones.effects';
 import { RolesEffects } from './effects/roles.effects';
+import { TipoPausaEffects } from './effects/tipoPausa.effects';
 import { UsuariosEffects } from './effects/usuarios.effects';
 
 export const EffectsArray: any[] = [
@@ -8,4 +9,5 @@ export const EffectsArray: any[] = [
   OrganizacionesEffects,
   UsuariosEffects,
   RolesEffects,
+  TipoPausaEffects,
 ];

@@ -100,6 +100,7 @@ export class MenuComponent implements OnInit {
             label: 'Tipo Pausa',
             icon: 'pi pi-fw pi-clock',
             visible: false,
+            routerLink: ['/herramientas/listadotipopausa'],
           },
         ],
       },
@@ -121,6 +122,35 @@ export class MenuComponent implements OnInit {
       this.items?.forEach((itemMenu) => {
         switch (rol) {
           case 1:
+            if (itemMenu.id === '1') {
+              if (org.length !== 0) {
+                itemMenu.visible = true;
+              }
+            }
+            if (itemMenu.id === '2') {
+              if (org.length !== 0) {
+                itemMenu.visible = true;
+              }
+            }
+            if (itemMenu.id === '3') {
+              if (org.length !== 0) {
+                itemMenu.visible = true;
+              }
+            }
+            if (itemMenu.id === '3') {
+              if (org.length !== 0) {
+                itemMenu.visible = true;
+              }
+            }
+            if (itemMenu.id === '4') {
+              if (org.length !== 0) {
+                itemMenu.visible = true;
+                itemMenu.items?.forEach((itemSubMenu) => {
+                  itemSubMenu.visible = true;
+                });
+              }
+            }
+
             if (itemMenu.id === '5') {
               itemMenu.visible = true;
               itemMenu.items?.forEach((itemSubMenu) => {
@@ -134,6 +164,38 @@ export class MenuComponent implements OnInit {
                   }
                 }
               });
+            }
+
+            break;
+
+          default:
+            if (itemMenu.id === '1') {
+              if (org.length !== 0) {
+                itemMenu.visible = true;
+              }
+            }
+            if (itemMenu.id === '2') {
+              if (org.length !== 0) {
+                itemMenu.visible = true;
+              }
+            }
+            if (itemMenu.id === '3') {
+              if (org.length !== 0) {
+                itemMenu.visible = true;
+              }
+            }
+            if (itemMenu.id === '3') {
+              if (org.length !== 0) {
+                itemMenu.visible = true;
+              }
+            }
+            if (itemMenu.id === '4') {
+              if (org.length !== 0) {
+                itemMenu.visible = true;
+                itemMenu.items?.forEach((itemSubMenu) => {
+                  itemSubMenu.visible = true;
+                });
+              }
             }
 
             break;

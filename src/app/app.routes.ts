@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { FichajeComponent } from './controlHorario/fichaje/fichaje.component';
 import { ListadoOrganizacionesComponent } from './controlHorario/herramientas/organizaciones/listado-organizaciones/listado-organizaciones.component';
 import { OrganizacionesComponent } from './controlHorario/herramientas/organizaciones/organizaciones/organizaciones.component';
+import { ListadoTiposPausasComponent } from './controlHorario/herramientas/tipoPausa/listado-tipos-pausas/listado-tipos-pausas.component';
 import { ListadoUsuariosComponent } from './controlHorario/herramientas/usuarios/listado-usuarios/listado-usuarios.component';
 import { MenuComponent } from './controlHorario/menu/menu.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
@@ -36,6 +37,10 @@ export const routes: Routes = [
       {
         path: 'listadousuarios',
         component: ListadoUsuariosComponent,
+      },
+      {
+        path: 'listadotipopausa',
+        component: ListadoTiposPausasComponent,
       },
     ],
   },

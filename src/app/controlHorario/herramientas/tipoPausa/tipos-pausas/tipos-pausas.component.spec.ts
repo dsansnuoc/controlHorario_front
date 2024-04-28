@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TiposPausaComponent } from './tipos-pausa.component';
+import { TiposPausasComponent } from './tipos-pausas.component';
 
-describe('TiposPausaComponent', () => {
-  let component: TiposPausaComponent;
-  let fixture: ComponentFixture<TiposPausaComponent>;
+describe('TiposPausasComponent', () => {
+  let component: TiposPausasComponent;
+  let fixture: ComponentFixture<TiposPausasComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TiposPausaComponent]
+      imports: [TiposPausasComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TiposPausaComponent);
+    fixture = TestBed.createComponent(TiposPausasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

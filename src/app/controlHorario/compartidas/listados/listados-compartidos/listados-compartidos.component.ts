@@ -18,6 +18,7 @@ export class ListadosCompartidosComponent {
   @Input() loading: boolean = true;
   @Input() activados: boolean = true;
   @Input() btnEditar: boolean = true;
+  @Input() btnBorrar: boolean = true;
 
   @Output() opcionesEvent = new EventEmitter<any>();
 
