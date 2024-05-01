@@ -51,28 +51,26 @@ export class ListadoUsuariosComponent implements OnInit, OnDestroy {
       {
         campo: 'name',
         filtro: true,
-        nombreColumna: 'general.nombre',
+        nombreColumna: this.translate.instant('general.nombre'),
         type: 'value',
       },
       {
         campo: 'email',
         filtro: true,
-        nombreColumna: 'general.email',
+        nombreColumna: this.translate.instant('general.email'),
         type: 'value',
       },
       {
         campo: 'roles',
         filtro: false,
-        nombreColumna: 'general.rol',
+        nombreColumna: this.translate.instant('general.rol'),
         type: 'object',
-        campoObject: 'name',
       },
       {
         campo: 'organizaciones',
         filtro: false,
-        nombreColumna: 'general.organizaciones',
+        nombreColumna: this.translate.instant('general.organizaciones'),
         type: 'object',
-        campoObject: 'name',
       }
     );
   }
@@ -104,7 +102,11 @@ export class ListadoUsuariosComponent implements OnInit, OnDestroy {
 
         dialogRef.afterClosed().subscribe((result: any) => {
           if (result) {
-            this.loadUsuarios();
+            if (this.org.length === 0) {
+              this.loadUsuarios();
+            } else {
+              this.loadUsuariosOrganizacion(this.org[0].id);
+            }
           }
         });
 
@@ -119,6 +121,8 @@ export class ListadoUsuariosComponent implements OnInit, OnDestroy {
         });
 
         dialogRefE.afterClosed().subscribe((result: any) => {
+          console.log(result);
+
           if (result) {
             if (this.org.length === 0) {
               this.loadUsuarios();

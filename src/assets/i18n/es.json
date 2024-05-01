@@ -15,7 +15,19 @@
     "nuevo": "Nuevo",
     "alta": "Alta",
     "modificacion": "Modificación",
-    "cancelar": "Cancelar"
+    "cancelar": "Cancelar",
+    "id": "Código",
+    "tipoSolicitud": "Tipos de Solicitudes",
+    "editar": "Editar",
+    "descripcion": "Descripción",
+    "guardar": "Guardar",
+    "rol": "Rol",
+    "organizaciones": "Organizaciones",
+    "desactivar": "Des-activar",
+    "activar": "Activar",
+    "roles": "Roles",
+    "activo": "Activo",
+    "repPassword": "Repetir Contraseña"
   },
   "error": {
     "password": "Contraseña incorrecta",
@@ -29,7 +41,9 @@
   },
   "herramientas": {
     "organizaciones": "Organizaciones / Clientes",
-    "usuarios": "Usuarios"
+    "usuarios": "Usuarios",
+    "tipoPausas": "Tipos de Pausa",
+    "tipoSolicitud": "Tipos de Solicitudes"
   },
   "mensajeErrorCampo": {
     "campoObligatorio": "El campo es obligatorio"

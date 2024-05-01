@@ -94,34 +94,34 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (this.suscripcion) {
+      this.suscripcion.unsubscribe();
+    }
     this.id = this.data.data.id;
-    this.loadRoles();
+
+    let user = JSON.parse(sessionStorage.getItem('user') ?? '');
+    this.org = user.organizaciones;
+
     setTimeout(() => {
-      this.loadOrganizaciones();
-
-      let user = JSON.parse(sessionStorage.getItem('user') ?? '');
-      this.org = user.organizaciones;
-      this.organizacionesAux = this.org.lenght;
-      if (this.org.lenght !== 0) {
+      this.loadRoles();
+      setTimeout(() => {
+        this.loadOrganizaciones();
         setTimeout(() => {
-          this.organizacion_id.setValue(
-            this.organizaciones.find((org) => org.id == this.org[0].id)
-          );
-        }, 200);
+          this.organizacionesAux = this.org.lenght;
+          setTimeout(() => {
+            if (this.id != 0) {
+              this.loadUsuario(this.id);
+            }
 
-        /*
-      this.loadUsuarios();
-    } else {
-      this.loadUsuariosOrganizacion(this.org[0].id);
-      */
-      }
-
-      if (this.id != 0) {
-        setTimeout(() => {
-          this.loadUsuario(this.id);
-        }, 200);
-      }
-    }, 200);
+            if (this.org.lenght !== 0) {
+              this.organizacion_id.setValue(
+                this.organizaciones.find((org) => org.id == this.org[0].id)
+              );
+            }
+          }, 300);
+        }, 300);
+      }, 300);
+    }, 300);
   }
 
   ngOnDestroy(): void {

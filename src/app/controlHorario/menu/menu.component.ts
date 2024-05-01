@@ -94,6 +94,7 @@ export class MenuComponent implements OnInit {
             label: 'Tipo Solicitud',
             icon: 'pi pi-fw pi-clock',
             visible: false,
+            routerLink: ['/herramientas/listadotiposolicitud'],
           },
           {
             id: '54',

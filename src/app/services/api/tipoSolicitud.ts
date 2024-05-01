@@ -3,13 +3,13 @@ import { Injectable, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { GlobalFunctions } from '../../globals/global-functions';
-import { AuthDTO } from '../../modulesDTO/auth.dto';
+import { TipoSolicitudDTO } from '../../modulesDTO/tipoSolicitud.dto';
 import { ServiciosLecturaConfiguracionService } from '../json/ServiciosLecturaConfiguracion';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ServiciosLoginService implements OnInit {
+export class TiposSolicitudService implements OnInit {
   // Variable global en la que se almacenará la URL del servidor.
   apiMaster: string | any = this.cookieService.get('apiMaster');
 
@@ -25,11 +25,34 @@ export class ServiciosLoginService implements OnInit {
   ngOnInit(): void {
     this.apiMaster = this.cookieService.get('apiMaster');
   }
-
-  realizarLogin(datos: AuthDTO): Observable<any> {
+  obtenerTipoSolicitud(conexion: any): Observable<TipoSolicitudDTO[]> {
     if (this.apiMaster == '') {
       this.apiMaster = this.cookieService.get('apiMaster');
     }
-    return this.http.post<any>(this.apiMaster + '/api/entradaLogin', datos);
+    return this.http.post<TipoSolicitudDTO[]>(
+      this.apiMaster + '/api/tipoSolicitud',
+      conexion
+    );
+  }
+
+  addTipoSolicitud(valores: any): Observable<any> {
+    return this.http.post<any>(
+      this.apiMaster + '/api/tipoSolicitudAlta',
+      valores
+    );
+  }
+
+  loadTipoSolicitud(valores: any): Observable<any> {
+    return this.http.post<any>(
+      this.apiMaster + '/api/tipoSolicitudBuscar',
+      valores
+    );
+  }
+
+  updateTipoSolicitud(valores: any, id: number): Observable<any> {
+    return this.http.put<any>(
+      this.apiMaster + '/api/tipoPausaActualizar/' + id,
+      valores
+    );
   }
 }
