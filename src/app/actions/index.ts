@@ -1,3 +1,4 @@
+export * from './fichaje.actions';
 export * from './login.actions';
 export * from './organizaciones.actions';
 export * from './roles.actions';

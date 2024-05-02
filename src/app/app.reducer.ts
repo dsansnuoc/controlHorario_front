@@ -8,6 +8,7 @@ export interface AppState {
   rolesApp: reducers.RolesState;
   tipoPausasApp: reducers.TipoPausaState;
   tipoSolicitudApp: reducers.TipoSolicitudState;
+  fichajeApp: reducers.FichajeState;
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
@@ -17,4 +18,5 @@ export const appReducers: ActionReducerMap<AppState> = {
   rolesApp: reducers.rolesReducer,
   tipoPausasApp: reducers.tipoPausasReducer,
   tipoSolicitudApp: reducers.tipoSolicitudReducer,
+  fichajeApp: reducers.fichajeReducer,
 };

@@ -12,6 +12,7 @@ export const reducers: ActionReducerMap<State> = {
 export const metaReducers: MetaReducer<State>[] = isDevMode() ? [] : [];
 */
 
+export * from './fichaje.reducer';
 export * from './login.reducer';
 export * from './organizaciones.reducer';
 export * from './roles.reducer';

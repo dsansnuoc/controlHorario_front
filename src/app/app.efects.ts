@@ -1,3 +1,4 @@
+import { FichajeEffects } from './effects/fichaje.effects';
 import { LoginEffects } from './effects/login.effects';
 import { OrganizacionesEffects } from './effects/organizaciones.effects';
 import { RolesEffects } from './effects/roles.effects';
@@ -12,4 +13,5 @@ export const EffectsArray: any[] = [
   RolesEffects,
   TipoPausaEffects,
   TipoSolicitudEffects,
+  FichajeEffects,
 ];

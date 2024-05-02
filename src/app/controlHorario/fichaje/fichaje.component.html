@@ -18,22 +18,32 @@
         <h2>{{ horaEntrada }}</h2>
         }
       </div>
-      <div class="grid-item">4</div>
+      <div class="grid-item"></div>
       <div class="grid-item">
         <p-button
           label="{{ 'fichaje.pausa' | translate }}"
-          [disabled]="!entrada"
+          [disabled]="!pausa"
+          (onClick)="clickInicioPausa()"
         ></p-button>
       </div>
-      <div class="grid-item">6</div>
-      <div class="grid-item">7</div>
+      <div class="grid-item">
+        <p-dropdown
+          [(ngModel)]="tipoPausa"
+          [options]="tiposPausas"
+          optionLabel="descripcion"
+          placeholder="Select..."
+          [disabled]="!pausa"
+        ></p-dropdown>
+      </div>
+      <div class="grid-item"></div>
       <div class="grid-item">
         <p-button
           label="{{ 'fichaje.regreso' | translate }}"
-          [disabled]="!entrada"
+          [disabled]="!rpausa"
+          (onClick)="clickIFinPausa()"
         ></p-button>
       </div>
-      <div class="grid-item">9</div>
+      <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item">
         <p-button
