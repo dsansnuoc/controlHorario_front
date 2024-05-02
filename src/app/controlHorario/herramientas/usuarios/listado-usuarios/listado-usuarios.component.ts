@@ -121,8 +121,6 @@ export class ListadoUsuariosComponent implements OnInit, OnDestroy {
         });
 
         dialogRefE.afterClosed().subscribe((result: any) => {
-          console.log(result);
-
           if (result) {
             if (this.org.length === 0) {
               this.loadUsuarios();

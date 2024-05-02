@@ -173,11 +173,8 @@ export class FichajeComponent implements OnInit {
       .select('fichajeApp')
       .subscribe((resultado) => {
         if (resultado.error == undefined && resultado.loading == false) {
-          console.log(resultado.fichaje?.tipo_fichaje);
-
           if (resultado.fichaje?.hora_fichaje == undefined) {
           } else {
-            console.log(resultado.fichaje.tipo_fichaje);
             if (resultado.fichaje.tipo_fichaje == '1') {
               this.entrada = true;
               this.salida = false;

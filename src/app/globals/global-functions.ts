@@ -21,14 +21,10 @@ export class GlobalFunctions {
 
       let apiMaster = cookieService.check('apiMaster');
 
-      console.log(apiMaster);
-
       if (apiMaster) {
         cookieService.delete('apiMaster', '/');
         apiMaster = !apiMaster;
       }
-
-      console.log(servicioLecturaConfig.camposConfig.apiMaster);
 
       if (!apiMaster) {
         setTimeout(() => {

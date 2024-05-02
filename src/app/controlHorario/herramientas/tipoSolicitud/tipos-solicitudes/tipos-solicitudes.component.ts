@@ -132,8 +132,6 @@ export class TiposSolicitudesComponent implements OnInit {
       .select('tipoSolicitudApp')
       .subscribe((resultado) => {
         if (resultado.error == undefined && resultado.loading == false) {
-          console.log(resultado.tipoSolicitud?.description);
-
           this.descripcion.setValue(resultado.tipoSolicitud?.description);
         }
       });

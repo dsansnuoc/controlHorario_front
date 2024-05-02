@@ -130,8 +130,6 @@ export class TiposPausasComponent implements OnInit {
       .select('tipoPausasApp')
       .subscribe((resultado) => {
         if (resultado.error == undefined && resultado.loading == false) {
-          console.log(resultado.tipoPausa?.descripcion);
-
           this.descripcion.setValue(resultado.tipoPausa?.descripcion);
         }
       });

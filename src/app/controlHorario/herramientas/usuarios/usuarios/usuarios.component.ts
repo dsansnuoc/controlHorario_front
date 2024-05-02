@@ -269,7 +269,6 @@ export class UsuariosComponent implements OnInit, OnDestroy {
               (org) => org.id == resultado.usuario?.organizaciones[0].id
             )
           );
-          // console.log(resultado.usuario?.activate);
           this.activate.setValue(
             resultado.usuario?.activate == true ? true : false
           );
