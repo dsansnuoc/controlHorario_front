@@ -50,7 +50,7 @@ Verificamos la versión instalada con `node -v`
 La versión utilizada es la v20.11.0
 En caso de la versión instalada es inferior a la esta, iremos a [NodeJS](https://nodejs.org/en/download) a instalar la versión actual.
 
-Angular Cli
+## ## Angular Cli
 
 Para instalar Angular Cli y poder trabajar, usaremos la instrucción `npm install -g@angular/cli`
 
@@ -59,8 +59,12 @@ Instalación y Ejecución:
 Una vez tengamos instalado tanto NodeJs como AngularCli, nos descargamos del git la aplicación:
 
 Si lo hacemos por SSH: git@github.com:dsansnuoc/controlHorario_front.git
+
 Si lo hacemos por HTTPS: https://github.com/dsansnuoc/controlHorario_front.git
 
-Una vez descargado, dentro del directorio de la aplicación, ejecutaremos ‘npm install’, nos instalara en la aplicación todos los componentes indicados en package.json , y con su versión indicada.
-Una vez instalado, para ejecutar usaremos ‘ng server’ y luego en el navegador ‘http://localhost:4200’, o ‘ng server -o’, que ya nos abre el navegador que tengamos por defecto con la url ‘https://localhost:4200’
+Una vez descargado, dentro del directorio de la aplicación, ejecutaremos `npm install`, nos instalara en la aplicación todos los componentes indicados en package.json , y con su versión indicada.
+
+Una vez instalado, para ejecutar usaremos `ng server` y luego en el navegador `http://localhost:4200`, 
+
+o `ng server -o`, que ya nos abre el navegador que tengamos por defecto con la url `https://localhost:4200`
 
