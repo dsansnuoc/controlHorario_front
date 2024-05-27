@@ -16,6 +16,7 @@ export * from './fichaje.reducer';
 export * from './login.reducer';
 export * from './organizaciones.reducer';
 export * from './roles.reducer';
+export * from './solicitud.reducer';
 export * from './tipoPausa.reducer';
 export * from './tipoSolicitud.reducer';
 export * from './usuarios.reducer';

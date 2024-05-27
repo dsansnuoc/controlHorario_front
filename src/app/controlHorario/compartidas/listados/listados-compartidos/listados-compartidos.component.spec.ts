@@ -8,10 +8,9 @@ describe('ListadosCompartidosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListadosCompartidosComponent]
-    })
-    .compileComponents();
-    
+      imports: [ListadosCompartidosComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ListadosCompartidosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

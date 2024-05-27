@@ -1,14 +1,14 @@
 export class TipoPausasDTO {
   id: number;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
   descripcion: string;
 
   constructor(
     id: number,
-    created_at: Date,
-    updated_at: Date,
-    descripcion: string
+    descripcion: string,
+    created_at?: Date,
+    updated_at?: Date
   ) {
     this.id = id;
     this.created_at = created_at;

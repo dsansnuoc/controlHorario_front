@@ -1,0 +1,41 @@
+<h1>{{ "solicitud.rechazo" | translate }}</h1>
+<div class="d-flex justify-content-center align-items-center mt-1 p-ml-4">
+  <form [formGroup]="formulario" (ngSubmit)="formulario.valid && onYesClick()">
+    <div class="mt-3">
+      <label class="fw-bold w-100">{{ "general.notario" | translate }}</label>
+      <input type="text" pInputText formControlName="motivo" />
+
+      @if ('tipoCopia.invalid && (tipoCopia.dirty || tipoCopia.touched)') {
+      <div>
+        <div
+          *ngFor="let error of formulario.controls['motivo'].errors | keyvalue"
+        >
+          <small class="p-error block fw-bold">
+            {{
+              error.key
+                | mensajeErrorCampo : formulario.controls["motivo"]
+                | translate
+            }}
+          </small>
+        </div>
+      </div>
+      }
+    </div>
+    <mat-dialog-actions>
+      <p-button class="mt-8" type="submit" [disabled]="!formulario.valid">{{
+        "general.guardar" | translate
+      }}</p-button>
+
+      <p-button
+        class="mt-8"
+        styleClass="p-button-danger"
+        icon="pi pi-times"
+        label="{{ 'general.cancelar' | translate }}"
+        (onClick)="onNoClick()"
+        [text]="true"
+        [raised]="true"
+      >
+      </p-button>
+    </mat-dialog-actions>
+  </form>
+</div>

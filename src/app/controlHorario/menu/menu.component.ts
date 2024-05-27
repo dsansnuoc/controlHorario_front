@@ -32,7 +32,7 @@ export class MenuComponent implements OnInit {
         id: '2',
         label: 'Solicitud',
         icon: 'pi pi-fw pi-clock',
-        items: [],
+        routerLink: ['/menu/solicitud'],
         visible: false,
       },
       {

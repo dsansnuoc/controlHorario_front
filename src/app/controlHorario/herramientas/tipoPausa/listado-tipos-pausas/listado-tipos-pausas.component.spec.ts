@@ -8,10 +8,9 @@ describe('ListadoTiposPausasComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListadoTiposPausasComponent]
-    })
-    .compileComponents();
-    
+      imports: [ListadoTiposPausasComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ListadoTiposPausasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

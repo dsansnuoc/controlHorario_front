@@ -27,7 +27,10 @@
     "activar": "Activar",
     "roles": "Roles",
     "activo": "Activo",
-    "repPassword": "Repetir Contraseña"
+    "repPassword": "Repetir Contraseña",
+    "fechas": "Fechas",
+    "comentario": "Comentario",
+    "usuarios": "Usuarios"
   },
   "error": {
     "password": "Contraseña incorrecta",
@@ -47,5 +50,82 @@
   },
   "mensajeErrorCampo": {
     "campoObligatorio": "El campo es obligatorio"
+  },
+  "solicitud": {
+    "fInicio": "Fecha Inicio",
+    "fFin": "Fecha Fin",
+    "estado": "Estado",
+    "aceptar": "Aceptar",
+    "rechazar": "Rechazar",
+    "fSolicitud": "Fecha Solicitud",
+    "fAceptada": "Fecha Aceptada",
+    "fRechazada": "Fecha Rechazada",
+    "pendiente": "Pendiente",
+    "aceptada": "Aceptada",
+    "rechazada": "Rechazada"
+  },
+  "primeng": {
+    "dayNames": [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miércoles",
+      "Jueves",
+      "Viernes",
+      "Sábado"
+    ],
+    "dayNamesShort": ["Dom", "Lun", "Mar", "Mierc", "Jue", "Vie", "Sáb"],
+    "dayNamesMin": ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+    "monthNames": [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre"
+    ],
+    "monthNamesShort": [
+      "Ene",
+      "Feb",
+      "Mar",
+      "Abr",
+      "May",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "today": "Todo el día",
+    "weekHeader": "Semana",
+    "startsWith": "Comienza con",
+    "contains": "Contiene",
+    "endsWith": "Termina con",
+    "equals": "Igual a",
+    "notEquals": "No igual a",
+    "lt": "Menor que",
+    "lte": "Menor o igual que",
+    "gt": "Mayor que",
+    "gte": "Mayor o igual que",
+    "is": "Es",
+    "isNot": "No es",
+    "before": "Antes",
+    "after": "Después",
+    "clear": "Limpiar",
+    "apply": "Aplicar",
+    "addRule": "Añadir Regla",
+    "matchAll": "Combinar todos",
+    "matchAny": "Coincide con cualquier",
+    "chooseLabel": "Añadir",
+    "uploadLabel": "Subir",
+    "cancelLabel": "Cancelar"
   }
 }

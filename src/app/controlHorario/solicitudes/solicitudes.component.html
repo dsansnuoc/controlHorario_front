@@ -1,1 +1,212 @@
 <p>solicitudes works!</p>
+<div class="justify-content-left align-items-left mt-4 w-100 ms-5">
+  <div class="justify-content-left align-items-left mt-4 w-100 ms-5">
+    <form
+      [formGroup]="formulario"
+      (ngSubmit)="formulario.valid && save()"
+      class="w-100"
+    >
+      <div class="row w-100">
+        <div class="col-3">
+          <label class="fw-bold label-bloque">{{
+            "general.fechas" | translate
+          }}</label>
+
+          <p-calendar
+            formControlName="fechaSolicitud"
+            selectionMode="range"
+            [readonlyInput]="true"
+            dateFormat="dd/mm/yy"
+            [showIcon]="true"
+            class="w-100"
+            [numberOfMonths]="2"
+            [firstDayOfWeek]="1"
+          />
+
+          <div
+            *ngIf="
+              fechaSolicitud.invalid &&
+              (fechaSolicitud.dirty || fechaSolicitud.touched)
+            "
+          >
+            <div
+              *ngFor="
+                let error of formulario.controls['fechaSolicitud'].errors
+                  | keyvalue
+              "
+            >
+              <small class="p-error block fw-bold">
+                {{
+                  error.key
+                    | mensajeErrorCampo : formulario.controls["fechaSolicitud"]
+                    | translate
+                }}
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <label class="fw-bold label-bloque">{{
+            "general.tipoSolicitud" | translate
+          }}</label>
+
+          <p-dropdown
+            formControlName="tpSolicitud"
+            [options]="tipoSolicitud"
+            optionLabel="description"
+            placeholder="Select..."
+            optionValue="id"
+            class="w-100"
+          ></p-dropdown>
+
+          <div
+            *ngIf="
+              tpSolicitud.invalid && (tpSolicitud.dirty || tpSolicitud.touched)
+            "
+          >
+            <div
+              *ngFor="
+                let error of formulario.controls['tpSolicitud'].errors
+                  | keyvalue
+              "
+            >
+              <small class="p-error block fw-bold">
+                {{
+                  error.key
+                    | mensajeErrorCampo : formulario.controls["tpSolicitud"]
+                    | translate
+                }}
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <label class="fw-bold label-bloque">{{
+            "general.comentario" | translate
+          }}</label>
+          <input
+            class="w-100"
+            type="text"
+            pInputText
+            formControlName="txtSolicitud"
+          />
+        </div>
+        <div class="col-3">
+          <label class="fw-bold label-bloque">{{
+            "general.usuarios" | translate
+          }}</label>
+
+          <p-dropdown
+            formControlName="usuarioSolicitud"
+            [options]="usuarios"
+            optionLabel="name"
+            placeholder="Select..."
+            optionValue="email"
+            class="w-100"
+            (onChange)="loadSolicitudes()"
+          ></p-dropdown>
+
+          <div
+            *ngIf="
+              usuarioSolicitud.invalid &&
+              (usuarioSolicitud.dirty || usuarioSolicitud.touched)
+            "
+          >
+            <div
+              *ngFor="
+                let error of formulario.controls['usuarioSolicitud'].errors
+                  | keyvalue
+              "
+            >
+              <small class="p-error block fw-bold">
+                {{
+                  error.key
+                    | mensajeErrorCampo
+                      : formulario.controls["usuarioSolicitud"]
+                    | translate
+                }}
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <p-button
+            class="mt-3"
+            type="submit"
+            [disabled]="!formulario.valid"
+            icon="pi pi-save"
+            label="{{ 'general.guardar' | translate }}"
+          >
+          </p-button>
+        </div>
+      </div>
+    </form>
+
+    <div class="justify-content-left align-items-left mt-4 w-75 ms-4">
+      <p-table [value]="solicitudes" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>{{ "general.tipoSolicitud" | translate }}</th>
+            <th>{{ "general.comentario" | translate }}</th>
+            <th>{{ "solicitud.fInicio" | translate }}</th>
+            <th>{{ "solicitud.fFin" | translate }}</th>
+            <th>{{ "solicitud.estado" | translate }}</th>
+            @if(activar) {
+            <th>{{ "solicitud.aceptar" | translate }}</th>
+            <th>{{ "solicitud.rechazar" | translate }}</th>
+            }
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-solicitud>
+          <tr>
+            <td>{{ obtenerTipoSolicitud(solicitud.tipo_solicitud) }}</td>
+            <td>{{ solicitud.texto_solicitud }}</td>
+            <td>{{ solicitud.fecha_inicio | date : "dd/MM/yyyy" }}</td>
+            <td>{{ solicitud.fecha_fin | date : "dd/MM/yyyy" }}</td>
+            <td>
+              <p-tag
+                [value]="getStatusText(solicitud.aceptada, solicitud.rechazada)"
+                [severity]="getStatus(solicitud.aceptada, solicitud.rechazada)"
+              />
+              @if( !solicitud.aceptada && !solicitud.rechazada) {
+              <h4>{{ "solicitud.fSolicitud" | translate }}</h4>
+              <h3>{{ solicitud.fecha_solicitud | date : "dd/MM/yyyy" }}</h3>
+              } @if( solicitud.aceptada) {
+              <h4>{{ "solicitud.fAceptada" | translate }}</h4>
+              <h3>{{ solicitud.fecha_aceptada | date : "dd/MM/yyyy" }}</h3>
+              } @if( solicitud.rechazada) {
+              <h4>{{ "solicitud.fRechazada" | translate }}</h4>
+              <h3>{{ solicitud.fecha_rechazada | date : "dd/MM/yyyy" }}</h3>
+              <h3>{{ solicitud.motivo_rechazo }}</h3>
+              }
+            </td>
+            @if(activar) {
+            <td>
+              @if( !solicitud.aceptada && !solicitud.rechazada) {
+              <p-button
+                icon="pi pi-thumbs-up"
+                [rounded]="true"
+                [text]="true"
+                severity="success "
+                (onClick)="solicitudAceptarId(solicitud.id)"
+              ></p-button>
+              }
+            </td>
+            <td>
+              @if( !solicitud.aceptada && !solicitud.rechazada) {
+              <p-button
+                icon="pi pi-thumbs-down"
+                [rounded]="true"
+                [text]="true"
+                severity="danger"
+                (onClick)="solicitudRechazarId(solicitud.id)"
+              ></p-button>
+              }
+            </td>
+            }
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

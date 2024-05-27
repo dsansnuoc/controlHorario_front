@@ -6,6 +6,7 @@ import { ListadoTiposPausasComponent } from './controlHorario/herramientas/tipoP
 import { ListadoTiposSolicitudesComponent } from './controlHorario/herramientas/tipoSolicitud/listado-tipos-solicitudes/listado-tipos-solicitudes.component';
 import { ListadoUsuariosComponent } from './controlHorario/herramientas/usuarios/listado-usuarios/listado-usuarios.component';
 import { MenuComponent } from './controlHorario/menu/menu.component';
+import { SolicitudesComponent } from './controlHorario/solicitudes/solicitudes.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { LoginGuardianService } from './services/auxiliares/login-guardian.service';
 
@@ -16,7 +17,11 @@ export const routes: Routes = [
   {
     path: 'menu',
     component: MenuComponent,
-    children: [{ path: 'fichaje', component: FichajeComponent }],
+    canActivate: [LoginGuardianService],
+    children: [
+      { path: 'fichaje', component: FichajeComponent },
+      { path: 'solicitud', component: SolicitudesComponent },
+    ],
   },
   {
     path: 'herramientas',
