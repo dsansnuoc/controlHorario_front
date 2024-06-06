@@ -72,7 +72,31 @@ o `ng server -o`, que ya nos abre el navegador que tengamos por defecto con la u
 
 Para poder instalar en proucción, en este caso en un IIS
 
-### Creación carpeta principal en el Servidor:
+### Configurar Servidor Producción:
+
+
+## ## Cetificado:
+
+En el nombre del servidor hacemos doble click y nos aparecen las características:
+
+![alt text](image.png)
+
+Hacemos doble click en el apartado de "Certificados del Servidor"
+
+En el menú de la derecha, realizamos "importar", y nos aparece la ventana par importar un certificado pfx
+
+![alt text](image-1.png)
+
+Buscamos el certificado.
+Indicamos la contraseña
+Y Aceptamos.
+
+Nos deberá de aparecen en el Listado de Certificados de Servidor.
+
+### Front
+
+
+## ## Creación carpeta principal en el Servidor:
 
 El nombre de la carpeta, puede ser por ejemplo: ControlHorario
 
@@ -80,6 +104,38 @@ Dentro de esta carpeta, se creará la carpera de Front, donde irá la aplicació
 
 Copiaremos de nuestra carpeta del proyectro  `dist/` al servidor.
 
-### Servidor:
+
+## ## ## Configuración Site:
+
+En el menú de la izquierda en en el apartado "Sites" (Sitios), realizamos botón Derecho "Agregar sitio Web"
+
+![alt text](image-2.png)
+
+Indicamos el nombre del sitio.
+La Ruta Física.
+Enlace https, indicando el puerto, generalmente es el 443
+Nombre del host. (Url que vamos a usar para poder acceder).
+
+Elegimos el certificado.
+
+Aceptamos y hos habrá creado el sitio.
+
+## ## ## Configuración Grupo de Aplicaciones
+
+En el menú izquierdo Grupo de aplicaciones, buscamos el grupo que nos acaba de crear automatiamente, es el nombre del Site.
+
+Le hacemos botón derecho Configuración básica.
+
+En el apartado Versión de .NET CLR, le indicamos "Sin código administrado".
+
+![alt text](image-3.png)
 
 
+En el menú de la izquierda, hacemos click en el site, elegimos la opción "Editor de configuración":
+
+
+El fichero web.config ha de contener para el buen funcionamiento:
+
+![alt text](image-4.png)
+
+Y dentro de la carpeta `assets\json` tenemos el ficchero `config.json` debemos indicar en el "apiMaster" la url del servidor Back
