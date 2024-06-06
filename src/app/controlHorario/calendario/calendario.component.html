@@ -1,1 +1,64 @@
-<p>calendario works!</p>
+<div class="justify-content-left align-items-left mt-4 w-100 ms-5">
+  <div class="justify-content-left align-items-left mt-4 w-100 ms-5">
+    <form
+      [formGroup]="formulario"
+      (ngSubmit)="(formulario.valid)"
+      class="w-100"
+    >
+      <div class="row w-100">
+        <div class="col-3">
+          <label class="fw-bold label-bloque">{{
+            "general.usuarios" | translate
+          }}</label>
+
+          <p-dropdown
+            formControlName="usuarioSolicitud"
+            [options]="usuarios"
+            optionLabel="name"
+            placeholder="Select..."
+            optionValue="email"
+            class="w-100"
+            (onChange)="loadSolicitudes()"
+          ></p-dropdown>
+
+          <div
+            *ngIf="
+              usuarioSolicitud.invalid &&
+              (usuarioSolicitud.dirty || usuarioSolicitud.touched)
+            "
+          >
+            <div
+              *ngFor="
+                let error of formulario.controls['usuarioSolicitud'].errors
+                  | keyvalue
+              "
+            >
+              <small class="p-error block fw-bold">
+                {{
+                  error.key
+                    | mensajeErrorCampo
+                      : formulario.controls["usuarioSolicitud"]
+                    | translate
+                }}
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-6"></div>
+        <div class="col-3">
+          <p-button (click)="generatePDF()">Generar PDF</p-button>
+        </div>
+      </div>
+    </form>
+    <div class="justify-content-left align-items-left mt-4 w-75 ms-4">
+      <div class="ngcalendar" id="ngcalendar" #ngcalendar>
+        <full-calendar
+          [events]="events"
+          [options]="calendarOptions"
+          class="calendar"
+          #calendar
+        ></full-calendar>
+      </div>
+    </div>
+  </div>
+</div>

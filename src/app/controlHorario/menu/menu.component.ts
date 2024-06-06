@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { MaterialModules } from '../../modules/material.modules';
 import { OtherModule } from '../../modules/other.modules';
 import { PrimeNgModules } from '../../modules/primeng.modules';
+import { InformesComponent } from '../informes/informes.component';
 
 @Component({
   selector: 'app-menu',
@@ -17,7 +19,7 @@ import { PrimeNgModules } from '../../modules/primeng.modules';
 export class MenuComponent implements OnInit {
   items: MenuItem[] | undefined;
 
-  constructor(private translate: TranslateService) {}
+  constructor(private translate: TranslateService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.items = [
@@ -39,7 +41,7 @@ export class MenuComponent implements OnInit {
         id: '3',
         label: 'Calendario',
         icon: 'pi pi-fw pi-calendar',
-        items: [],
+        routerLink: ['/menu/calendario'],
         visible: false,
       },
       {
@@ -52,18 +54,21 @@ export class MenuComponent implements OnInit {
             id: '41',
             label: 'Excel',
             icon: 'pi pi-fw ppi-file-excel',
+            command: () => this.openModal('xlsx'),
             visible: false,
           },
           {
             id: '42',
             label: 'PDF',
             icon: 'pi pi-fw pi-file-pdf',
+            command: () => this.openModal('pdf'),
             visible: false,
           },
           {
             id: '43',
             label: 'CSV',
             icon: 'pi pi-fw pi-clock',
+            command: () => this.openModal('csv'),
             visible: false,
           },
         ],
@@ -203,6 +208,15 @@ export class MenuComponent implements OnInit {
         }
       });
     }
+  }
+
+  openModal(tipo: string) {
+    const dialogRef = this.dialog.open(InformesComponent, {
+      data: { data: tipo },
+      height: '65vh',
+      width: '95vh',
+      //disableClose: true,
+    });
   }
 }
 

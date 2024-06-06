@@ -10,6 +10,7 @@ export interface AppState {
   tipoSolicitudApp: reducers.TipoSolicitudState;
   fichajeApp: reducers.FichajeState;
   solicitudesApp: reducers.SolicitudState;
+  exportApp: reducers.ExportState;
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
@@ -21,4 +22,5 @@ export const appReducers: ActionReducerMap<AppState> = {
   tipoSolicitudApp: reducers.tipoSolicitudReducer,
   fichajeApp: reducers.fichajeReducer,
   solicitudesApp: reducers.solicitudReducer,
+  exportApp: reducers.exportReducer,
 };

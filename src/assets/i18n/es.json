@@ -30,7 +30,8 @@
     "repPassword": "Repetir Contraseña",
     "fechas": "Fechas",
     "comentario": "Comentario",
-    "usuarios": "Usuarios"
+    "usuarios": "Usuarios",
+    "exportar": "Exporatar a:"
   },
   "error": {
     "password": "Contraseña incorrecta",

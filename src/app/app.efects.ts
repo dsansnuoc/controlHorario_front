@@ -1,3 +1,4 @@
+import { ExportEffects } from './effects/export.effects';
 import { FichajeEffects } from './effects/fichaje.effects';
 import { LoginEffects } from './effects/login.effects';
 import { OrganizacionesEffects } from './effects/organizaciones.effects';
@@ -16,4 +17,5 @@ export const EffectsArray: any[] = [
   TipoSolicitudEffects,
   FichajeEffects,
   SolicitudEffects,
+  ExportEffects,
 ];

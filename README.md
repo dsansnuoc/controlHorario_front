@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
 
-## Instalar
+## Instalar Developent Server
 
 Descargar del git
 
@@ -67,4 +67,19 @@ Una vez descargado, dentro del directorio de la aplicación, ejecutaremos `npm i
 Una vez instalado, para ejecutar usaremos `ng server` y luego en el navegador `http://localhost:4200`, 
 
 o `ng server -o`, que ya nos abre el navegador que tengamos por defecto con la url `https://localhost:4200`
+
+## Instalar Server Proudcción (IIS)
+
+Para poder instalar en proucción, en este caso en un IIS
+
+### Creación carpeta principal en el Servidor:
+
+El nombre de la carpeta, puede ser por ejemplo: ControlHorario
+
+Dentro de esta carpeta, se creará la carpera de Front, donde irá la aplicación.
+
+Copiaremos de nuestra carpeta del proyectro  `dist/` al servidor.
+
+### Servidor:
+
 

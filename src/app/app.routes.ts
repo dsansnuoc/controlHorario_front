@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { CalendarioComponent } from './controlHorario/calendario/calendario.component';
 import { FichajeComponent } from './controlHorario/fichaje/fichaje.component';
 import { ListadoOrganizacionesComponent } from './controlHorario/herramientas/organizaciones/listado-organizaciones/listado-organizaciones.component';
 import { OrganizacionesComponent } from './controlHorario/herramientas/organizaciones/organizaciones/organizaciones.component';
@@ -21,6 +22,7 @@ export const routes: Routes = [
     children: [
       { path: 'fichaje', component: FichajeComponent },
       { path: 'solicitud', component: SolicitudesComponent },
+      { path: 'calendario', component: CalendarioComponent },
     ],
   },
   {
