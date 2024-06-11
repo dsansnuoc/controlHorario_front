@@ -34,9 +34,9 @@ export class GlobalFunctions {
             fechaExpiracion,
             '/'
           );
-        }, 300);
+        }, 400);
       }
-    }, 500);
+    }, 400);
   }
 
   public static formatDate(date: Date) {

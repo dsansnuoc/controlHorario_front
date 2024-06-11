@@ -63,7 +63,7 @@ export class FichajeComponent implements OnInit {
     this.loadFichajeUsuario();
     setTimeout(() => {
       this.loadTiposParada();
-    }, 500);
+    }, 600);
   }
 
   loadTiposParada() {

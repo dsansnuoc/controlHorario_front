@@ -1,3 +1,4 @@
 {
-  "apiMaster": "http://localhost:8000"
+  "apiMaster2": "http://localhost:8000",
+  "apiMaster": "https://api.controlhorario.wordplex.es"
 }

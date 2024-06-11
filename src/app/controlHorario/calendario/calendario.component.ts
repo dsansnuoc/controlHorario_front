@@ -117,35 +117,35 @@ export class CalendarioComponent implements OnInit, OnDestroy {
     this.org = user.organizaciones;
     this.rol = user.roles;
     this.idUser = user.email;
-    setTimeout(() => {
-      this.loadTiposSolicitud();
-      setTimeout(() => {
-        if (this.org.length === 0) {
-          this.loadUsuarios();
-        } else {
-          this.loadUsuariosOrganizacion(this.org[0].id);
-        }
-        setTimeout(() => {
-          if (this.rol.length !== 0) {
-            const usuarioSolicitudControl =
-              this.formulario.get('usuarioSolicitud');
-            if (this.rol[0].id === 1) {
-              usuarioSolicitudControl?.enable();
-              this.activar = true;
-            } else {
-              this.activar = false;
-              usuarioSolicitudControl?.disable();
-            }
 
-            let userAux = this.usuarios.filter(
-              (usr) => usr.email === this.idUser
-            )[0];
-            this.usuarioSolicitud.setValue(userAux.email);
-          }
-          setTimeout(() => {
-            this.loadSolicitudes();
-          }, 200);
-        }, 200);
+    this.loadTiposSolicitud();
+
+    setTimeout(() => {
+      if (this.org.length === 0) {
+        this.loadUsuarios();
+      } else {
+        this.loadUsuariosOrganizacion(this.org[0].id);
+      }
+    }, 500);
+
+    setTimeout(() => {
+      if (this.rol.length !== 0) {
+        const usuarioSolicitudControl = this.formulario.get('usuarioSolicitud');
+        if (this.rol[0].id === 1) {
+          usuarioSolicitudControl?.enable();
+          this.activar = true;
+        } else {
+          this.activar = false;
+          usuarioSolicitudControl?.disable();
+        }
+
+        let userAux = this.usuarios.filter(
+          (usr) => usr.email === this.idUser
+        )[0];
+        this.usuarioSolicitud.setValue(userAux.email);
+      }
+      setTimeout(() => {
+        this.loadSolicitudes();
       }, 300);
     }, 300);
   }
@@ -156,30 +156,25 @@ export class CalendarioComponent implements OnInit, OnDestroy {
   }
 
   loadTiposSolicitud() {
-    if (this.suscripcion) {
-      this.suscripcion.unsubscribe();
-    }
-
     let valores = {
       nombreConexion: this.conection,
     };
 
     this.store.dispatch(allTipoSolicitud({ conexion: valores }));
 
-    this.suscripcion = this.store
-      .select('tipoSolicitudApp')
-      .subscribe((resultado) => {
-        if (resultado.error == undefined && resultado.loading === false) {
-          this.tipoSolicitud = [...resultado.tipoSolicitudes];
-        }
-      });
+    this.store.select('tipoSolicitudApp').subscribe((resultado) => {
+      if (resultado.error == undefined && resultado.loading === false) {
+        this.tipoSolicitud = [...resultado.tipoSolicitudes];
+      }
+    });
   }
 
   loadUsuarios() {
+    /*
     if (this.suscripcion) {
       this.suscripcion.unsubscribe();
     }
-
+*/
     this.store.dispatch(allUsuarios());
 
     this.suscripcion = this.store
@@ -230,7 +225,6 @@ export class CalendarioComponent implements OnInit, OnDestroy {
     this.suscripcion = this.store
       .select('solicitudesApp')
       .subscribe((resultado) => {
-        console.log(resultado);
         if (resultado.error == undefined && resultado.loading == false) {
           this.solicitudes = [...resultado.solicitudes];
 
